@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matienzo — Felipe Barclay</title>
+<meta name="description" content="Matienzo — brand identity for an Argentine stainless-steel mate inspired by Patagonia: logotype, palette, 3D renders and a social content extra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBFBFA; --paper-2:#F4F4F2;
+    --ink:#16171A; --ink-2:#3D3F44; --muted:#82858C; --line:#E4E4E1;
+    --g-hero:linear-gradient(112deg,#16171A 0%,#16171A 20%,#1F2A6E 42%,#2C3597 58%,#6B3BC9 80%,#C4416F 100%);
+    --g-hero-light:linear-gradient(112deg,#FFFFFF 0%,#FFFFFF 20%,#CBD3FF 42%,#8DA0FF 58%,#B98BE0 80%,#F2839F 100%);
+    --g-accent:linear-gradient(105deg,#2F4BD8 0%,#6B3BC9 52%,#D4426E 100%);
+    --g-accent-light:linear-gradient(105deg,#8DA0FF,#B98BE0 52%,#F2839F);
+    --step-1:19px; --step-2:clamp(22px,2.1vw,27px); --step-4:clamp(36px,5.6vw,68px);
+    --gap:clamp(56px,6vw,92px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:80px;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',-apple-system,sans-serif;
+    font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--ink);color:var(--paper);}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 40px;}
+  .wide{max-width:1400px;margin:0 auto;padding:0 40px;}
+  @media (max-width:700px){ .wrap,.wide{padding:0 22px;} }
+
+  header{position:sticky;top:0;z-index:50;background:rgba(19,20,24,.9);
+    backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid rgba(255,255,255,.1);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .back{display:inline-flex;align-items:center;gap:9px;font-size:14px;color:#B9BBC0;transition:color .2s;}
+  .back:hover{color:#fff;} .back svg{transition:transform .25s;} .back:hover svg{transform:translateX(-3px);}
+  .navr{display:flex;align-items:center;gap:22px;}
+  .navr a{font-size:14px;color:#B9BBC0;transition:color .2s;}
+  .navr a:hover{color:#fff;}
+  .cta{border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:7px 16px;transition:.2s;}
+  .cta:hover{background:var(--g-accent);border-color:transparent;color:#fff !important;}
+  @media (max-width:620px){ .navr a.sm{display:none;} }
+
+  .hero{background:#131418;color:#EDEDEB;padding:clamp(48px,6.5vw,80px) 0 clamp(40px,5vw,58px);}
+  .eyebrow{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:500;margin-bottom:18px;
+    background:var(--g-accent-light);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;}
+  .hero h1{font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:var(--step-4);
+    line-height:1.05;letter-spacing:-0.026em;max-width:18ch;margin-bottom:18px;
+    background:var(--g-hero-light);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;padding-bottom:.05em;}
+  .deck{max-width:56ch;font-size:var(--step-1);line-height:1.55;color:#B9BBC0;margin-bottom:34px;}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;
+    padding-top:24px;border-top:1px solid rgba(255,255,255,.12);position:relative;}
+  .facts::before{content:'';position:absolute;top:-1px;left:0;width:150px;height:1px;background:var(--g-accent-light);}
+  .facts dt{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#71747B;margin-bottom:6px;}
+  .facts dd{font-size:14.5px;color:#DCDDE0;}
+
+  .workflow{border-bottom:1px solid var(--line);background:var(--paper-2);}
+  .workflow-inner{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 0;}
+  .wf-label{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:500;flex-shrink:0;}
+  .wf-tools{display:flex;flex-wrap:wrap;gap:8px;}
+  .wf-chip{font-size:13px;color:var(--ink-2);border:1px solid var(--line);border-radius:100px;padding:6px 14px;background:#fff;}
+  .wf-chip.pending{color:var(--muted);font-style:italic;border-style:dashed;background:transparent;}
+
+  .show{padding:var(--gap) 0;display:flex;flex-direction:column;gap:clamp(22px,2.6vw,34px);}
+  figure{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;}
+  figure img,figure video{width:100%;height:auto;display:block;}
+  /* continuous scroll deck — consecutive case-study slides rendered as one seamless piece, no gaps between them */
+  .scroll-deck{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;}
+  .scroll-deck img,.scroll-deck video{width:100%;height:auto;display:block;}
+
+  /* ---------- extra: social assets ---------- */
+  .social{border-top:1px solid var(--line);padding:var(--gap) 0;}
+  .social-head{max-width:640px;margin-bottom:clamp(28px,3.4vw,40px);}
+  .social-head .l{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+  .social-head h2{font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:var(--step-2);
+    letter-spacing:-0.02em;margin-bottom:10px;}
+  .social-head p{color:var(--muted);font-size:14.5px;line-height:1.6;}
+
+  .ig-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;max-width:480px;
+    box-shadow:0 30px 60px -44px rgba(44,53,151,.35);}
+  .ig-head{display:flex;align-items:center;gap:12px;padding:15px 18px;border-bottom:1px solid var(--line);}
+  .ig-avatar{width:42px;height:42px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#16171A;
+    border:1px solid var(--line);}
+  .ig-avatar img{width:100%;height:100%;object-fit:cover;}
+  .ig-head-text .handle{font-size:13.5px;font-weight:600;}
+  .ig-head-text .sub{font-size:12px;color:var(--muted);margin-top:1px;}
+  .ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);}
+  .ig-grid a{display:block;aspect-ratio:1/1;overflow:hidden;}
+  .ig-grid img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+  .ig-grid a:hover img{transform:scale(1.05);}
+
+  .next{border-top:1px solid var(--line);padding:var(--gap) 0;}
+  .ncard{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    border:1px solid var(--line);border-radius:14px;padding:32px 34px;background:#fff;
+    transition:border-color .25s,transform .25s;}
+  .ncard:hover{border-color:#D8D4E6;transform:translateY(-2px);}
+  .ncard .l{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .ncard h3{font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:var(--step-2);letter-spacing:-0.02em;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:500;padding:12px 22px;
+    border-radius:100px;border:1px solid transparent;background:var(--g-accent);color:#fff;transition:opacity .2s;}
+  .btn:hover{opacity:.88;}
+  .btn-g{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-g:hover{border-color:#C9C9C5;opacity:1;}
+  footer{border-top:1px solid var(--line);padding:26px 0 40px;display:flex;justify-content:space-between;
+    flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--muted);}
+
+  .rise{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease;}
+  .rise.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .rise{opacity:1;transform:none;transition:none;}
+    .ncard:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wide nav">
+    <a href="../index.html#playground" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Playground
+    </a>
+    <div class="navr">
+      <a href="../index.html#work" class="sm">Work</a>
+      <a href="../index.html#resume" class="sm">Resume</a>
+      <a href="../index.html#contact" class="cta">Contact</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wide">
+    <div class="eyebrow">Playground — Brand identity</div>
+    <h1>Matienzo</h1>
+    <p class="deck">Full identity for Matienzo, a stainless-steel mate brand inspired by Patagonia — logotype, palette and 3D renders.</p>
+  </div>
+</div>
+
+<div class="workflow">
+  <div class="wide workflow-inner">
+    <span class="wf-label">Workflow</span>
+    <div class="wf-tools">
+      <span class="wf-chip">Blender</span>
+      <span class="wf-chip">Illustrator</span>
+    </div>
+  </div>
+</div>
+
+<div class="wide show">
+  <div class="scroll-deck">
+    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/89284c206635537.66cfa570aad23.jpg" alt="Matienzo — brand cover over a Patagonia landscape" loading="lazy">
+    <video autoplay muted loop playsinline poster="../assets/matienzo-turntable-poster.jpg">
+      <source src="../assets/matienzo-turntable.mp4" type="video/mp4">
+    </video>
+    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/19c2a9206635537.66cfa570ab600.jpg" alt="Matienzo — brand statement and the mark in three tones" loading="lazy">
+    <video autoplay muted loop playsinline poster="../assets/matienzo-showcase-poster.jpg">
+      <source src="../assets/matienzo-showcase.mp4" type="video/mp4">
+    </video>
+    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/e03760206635537.66cfa570aa33c.jpg" alt="Matienzo — mark across the four-color palette" loading="lazy">
+    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/cb973c206635537.66cfa570a7cd0.jpg" alt="Matienzo — product render with line graphic, Industria Argentina" loading="lazy">
+    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/8be7a2206635537.66cfa570a98aa.jpg" alt="Matienzo — closing cover, logo lockup over Patagonia" loading="lazy">
+  </div>
+</div>
+
+<div class="social">
+  <div class="wrap">
+    <div class="social-head rise">
+      <div class="l">Extra</div>
+      <h2>Social assets</h2>
+      <p>Beyond the identity — a small pack of Instagram-ready pieces built from the same render, mark and grey backdrop. Feed and story cuts, laid out here as a mini grid.</p>
+    </div>
+    <div class="ig-card rise">
+      <div class="ig-head">
+        <div class="ig-avatar"><img src="../assets/matienzo-logo.jpg" alt="Matienzo mark"></div>
+        <div class="ig-head-text">
+          <div class="handle">matienzo.ar</div>
+          <div class="sub">Mate térmico · acero inoxidable</div>
+        </div>
+      </div>
+      <div class="ig-grid">
+        <a href="../assets/matienzo-grid-1.jpg" target="_blank" rel="noopener"><img src="../assets/matienzo-grid-1.jpg" alt="Post — hero" loading="lazy"></a>
+        <a href="../assets/matienzo-grid-2.jpg" target="_blank" rel="noopener"><img src="../assets/matienzo-grid-2.jpg" alt="Post — características" loading="lazy"></a>
+        <a href="../assets/matienzo-grid-3.jpg" target="_blank" rel="noopener"><img src="../assets/matienzo-grid-3.jpg" alt="Post — dimensiones" loading="lazy"></a>
+        <a href="../assets/matienzo-grid-4.jpg" target="_blank" rel="noopener"><img src="../assets/matienzo-grid-4.jpg" alt="Post — ideal para el auto" loading="lazy"></a>
+        <a href="../assets/matienzo-grid-5.jpg" target="_blank" rel="noopener"><img src="../assets/matienzo-grid-5.jpg" alt="Post — comprá el tuyo" loading="lazy"></a>
+        <a href="../assets/matienzo-grid-6.jpg" target="_blank" rel="noopener"><img src="../assets/matienzo-grid-6.jpg" alt="Post — ideal para la cama" loading="lazy"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="next">
+  <div class="wrap">
+    <a href="realidades-fundidas.html" class="ncard rise">
+      <div>
+        <div class="l">Next in playground</div>
+        <h3>Realidades Fundidas</h3>
+      </div>
+      <span class="btn btn-g">View project
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+    <div style="margin-top:44px;display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="../index.html#playground" class="btn">Back to playground</a>
+      <a href="https://www.behance.net/gallery/206635537/MATIENZO-Identidad-de-Marca-(Branding)" target="_blank" rel="noopener" class="btn btn-g">Full project on Behance</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <footer><span>© 2026 Felipe Barclay</span><span>Matienzo — brand identity, 2024</span></footer>
+</div>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const r = document.querySelectorAll('.rise');
+  if (reduce) { r.forEach(e => e.classList.add('in')); }
+  else {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:0, rootMargin:'0px 0px -40px 0px'});
+    r.forEach(e => io.observe(e));
+  }
+
+</script>
+
+</body>
+</html>

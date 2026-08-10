@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>history.scrollRestoration = 'manual';</script>
+<title>Felipe Barclay — Product Designer</title>
+<meta name="description" content="Felipe Barclay — Product Designer working across UX/UI, web and B2B software. Based in Buenos Aires, open to remote roles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBFBFA;
+    --paper-2:#F4F4F2;
+    --ink:#16171A;
+    --ink-2:#3D3F44;
+    --muted:#82858C;
+    --line:#E4E4E1;
+    --radius:10px;
+
+    /* gradient system */
+    --g-hero:linear-gradient(112deg,#16171A 0%,#16171A 20%,#1F2A6E 42%,#2C3597 58%,#6B3BC9 80%,#C4416F 100%);
+    --g-hero-closing:linear-gradient(266.15deg,#16171A 0%,#16171A 20%,#1F2A6E 42%,#2C3597 58%,#6B3BC9 80%,#C4416F 100%);
+    --g-h1:linear-gradient(100.17deg,#16171A 1.87%,#1F2A6E 31.71%,#6B3BC9 61.54%,#C4416F 92.28%);
+    --g-accent:linear-gradient(125deg,#2F4BD8 0%,#6B3BC9 52%,#D4426E 100%);
+    --g-rule:linear-gradient(90deg,#2F4BD8,#6B3BC9 40%,#D4426E 70%,rgba(212,66,110,0) 100%);
+    --g-wash:linear-gradient(165deg,#F2F3FB 0%,#F6F1FA 48%,#FBF1F4 100%);
+
+    /* hero skill cards — warm accent, distinct from the blue/purple system */
+    --gold:#E3A857;
+    --gold-dim:#B98A46;
+    --card-border:#AC500A;
+    --icon-border:rgba(230,100,0,.69);
+
+    --step--1:13px;
+    --step-0:15.5px;
+    --step-1:19px;
+    --step-2:clamp(24px, 2.4vw, 30px);
+    --step-3:clamp(30px, 3.6vw, 44px);
+    --step-4:clamp(38px, 6.4vw, 82px);
+
+    --gap-section:clamp(90px, 11vw, 168px);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:80px;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:var(--step-0);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--ink);color:var(--paper);}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:1256px;margin:0 auto;padding:0 40px;}
+  @media (max-width:700px){ .wrap{padding:0 22px;} }
+
+  /* ---------- typography helpers ---------- */
+  .muted{color:var(--muted);}
+  .small{font-size:var(--step--1);}
+
+  .section-title{
+    font-family:'Newsreader',Georgia,serif;
+    font-size:var(--step-3);line-height:1.1;letter-spacing:-0.02em;font-weight:400;
+    background:var(--g-hero);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    padding-bottom:.06em;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,251,250,.85);
+    backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease;
+  }
+  header.scrolled{border-bottom-color:var(--line);}
+  /* header inverts while the dark Featured Projects / Playground band is in view */
+  header.on-dark{background:rgba(19,20,24,.85);border-bottom-color:rgba(255,255,255,.1);}
+  header.on-dark .brand{color:#F5F5F3;}
+  header.on-dark .brand span{color:#8E9198;}
+  header.on-dark nav a{color:#B9BBC0;}
+  header.on-dark nav a:hover,header.on-dark nav a.active{color:#fff;}
+  header.on-dark .nav-cta{border-color:rgba(255,255,255,.22);}
+  header.on-dark .nav-cta:hover{border-color:transparent;color:#fff;}
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:68px;
+  }
+  .brand{font-weight:500;font-size:15px;letter-spacing:-0.01em;}
+  .brand span{color:var(--muted);font-weight:400;}
+  nav ul{list-style:none;display:flex;gap:30px;align-items:center;}
+  nav a{
+    font-size:14px;color:var(--ink-2);
+    position:relative;padding:4px 0;transition:color .2s ease;
+  }
+  nav a::after{
+    content:'';position:absolute;left:0;right:0;bottom:0;height:1.5px;
+    background:var(--g-accent);transform:scaleX(0);transform-origin:left;
+    transition:transform .25s ease;
+  }
+  nav a:hover{color:var(--ink);}
+  nav a:hover::after,nav a.active::after{transform:scaleX(1);}
+  nav a.active{color:var(--ink);}
+  .nav-cta{
+    font-size:14px;border:1px solid var(--line);border-radius:100px;
+    padding:7px 16px;transition:border-color .2s ease,background .2s ease,color .2s ease;
+  }
+  .nav-cta:hover{border-color:transparent;background:var(--g-accent);color:#fff;}
+  .nav-cta::after{display:none;}
+  @media (max-width:900px){
+    nav ul{gap:18px;}
+    nav li.hide-sm{display:none;}
+  }
+
+  /* ---------- hero ---------- */
+  #home{
+    position:relative;overflow:hidden;
+    padding:clamp(100px,13vw,172px) 0 clamp(56px,7vw,84px);
+  }
+  .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;}
+  .hero-bg img{
+    width:100%;height:100%;object-fit:cover;object-position:50% 14%;
+  }
+  #home > .wrap{position:relative;z-index:1;}
+  .hero-block{position:relative;}
+  .hero-inner{position:relative;}
+
+  h1{
+    font-family:'Newsreader',Georgia,serif;font-weight:400;text-transform:uppercase;
+    font-size:clamp(46px,7.68vw,121.01px);line-height:1.04;letter-spacing:-0.0276em;
+    background:var(--g-h1);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    padding-top:.06em;padding-bottom:.05em;
+  }
+  h1 .yr{font-style:italic;text-transform:none;}
+  .hero-line{
+    max-width:565px;font-size:clamp(18px,1.85vw,22px);line-height:1.32;
+    letter-spacing:-0.015em;color:var(--ink);margin-top:24px;margin-bottom:18px;
+  }
+  .hero-sub{max-width:683px;font-size:16.5px;line-height:1.62;color:var(--muted);}
+
+  .hero-portrait{
+    position:absolute;top:110px;right:0;bottom:0;width:341px;
+    overflow:hidden;
+  }
+  .hero-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block;}
+  @media (max-width:900px){ .hero-portrait{display:none;} }
+
+  .hero-divider{height:1px;background:var(--g-rule);opacity:.6;margin-top:44px;}
+
+  /* ---------- hero skill cards ---------- */
+  .hero-skills{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+    margin-top:44px;
+  }
+  @media (max-width:820px){ .hero-skills{grid-template-columns:1fr;max-width:460px;} }
+  .hs-card{
+    position:relative;
+    background:#131417;border:2px solid var(--card-border);border-radius:14px;
+    padding:24px 22px;
+    transition:border-color .3s ease,box-shadow .3s ease;
+  }
+  .hs-card:hover{
+    border-color:#E66400;
+    box-shadow:0 0 22px -8px rgba(230,100,0,.5);
+  }
+  .hs-icon{
+    position:relative;z-index:1;
+    width:33px;height:33px;border-radius:10px;margin-bottom:22px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(227,168,87,.12);border:1px solid var(--icon-border);
+    color:#E66400;
+    transition:background .3s ease;
+  }
+  .hs-card:hover .hs-icon{background:rgba(227,168,87,.2);}
+  .hs-card h3{
+    position:relative;z-index:1;
+    font-size:15.5px;font-weight:500;letter-spacing:-0.01em;color:#F5F5F3;
+    margin-bottom:10px;line-height:1.3;
+  }
+  .hs-card p{position:relative;z-index:1;font-size:13.5px;line-height:1.42;color:#999CA3;}
+
+  /* ---------- generic section ---------- */
+  section{scroll-margin-top:80px;}
+  .sec{padding:var(--gap-section) 0;border-top:1px solid var(--line);}
+  /* Playground follows straight on from Featured Projects — tighter gap, no extra hairline, same dark band */
+  #playground{padding-top:clamp(52px,6vw,80px);border-top:none;}
+  .sec-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:24px;flex-wrap:wrap;margin-bottom:56px;
+  }
+  .sec-head > p{max-width:46ch;color:var(--muted);font-size:14.5px;}
+
+  /* Featured Projects / Playground: intro paragraph sits below the title, not beside it */
+  #work .sec-head,#playground .sec-head{margin-bottom:14px;}
+  .sec-sub{max-width:46ch;color:var(--muted);font-size:14.5px;margin-bottom:56px;}
+  #playground .sec-sub{max-width:500px;}
+  #work .sec-sub{max-width:640px;}
+
+  /* ---------- resume ---------- */
+  .resume-grid{border-top:1px solid var(--line);padding-top:38px;display:grid;grid-template-columns:1.25fr 1fr;gap:70px;}
+  @media (max-width:820px){ .resume-grid{grid-template-columns:1fr;gap:44px;} }
+  .rblock{margin-bottom:44px;}
+  .rblock:last-child{margin-bottom:0;}
+  .rblock > h3{
+    font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+    font-weight:500;margin-bottom:20px;padding-bottom:12px;
+    border-bottom:1px solid var(--line);position:relative;
+    background:var(--g-accent);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+  .rblock > h3::after{
+    content:'';position:absolute;bottom:-1px;left:0;width:46px;height:1px;background:var(--g-rule);
+  }
+  .rrow{display:grid;grid-template-columns:88px 1fr;gap:20px;padding:14px 0;}
+  @media (max-width:560px){ .rrow{grid-template-columns:1fr;gap:4px;} }
+  .rrow .yr{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px;}
+  .rrow h4{font-size:15px;font-weight:500;letter-spacing:-0.01em;margin-bottom:2px;}
+  .rrow .org{font-size:13.5px;color:var(--muted);margin-bottom:7px;}
+  .rrow p{font-size:13.5px;color:var(--ink-2);line-height:1.65;}
+
+  .skill{padding:11px 0;border-bottom:1px solid var(--line);}
+  .skill:last-child{border-bottom:none;}
+  .skill-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:7px;}
+  .skill-top span:first-child{font-size:14px;}
+  .skill-top span:last-child{font-size:12px;color:var(--muted);}
+  .bar{height:3px;background:var(--paper-2);border-radius:3px;overflow:hidden;}
+  .bar i{display:block;height:100%;background:var(--g-accent);border-radius:3px;}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;}
+  .tag{
+    font-size:11.5px;color:var(--ink-2);
+    border:1px solid var(--line);border-radius:100px;padding:4px 11px;background:#fff;
+  }
+  .tag-grad{
+    border-color:transparent;
+    background:
+      var(--g-wash) padding-box,
+      var(--g-accent) border-box;
+    color:#4A3B86;
+  }
+
+  .resume-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:14.5px;font-weight:500;
+    padding:12px 22px;border-radius:100px;
+    border:1px solid var(--ink);background:var(--ink);color:var(--paper);
+    transition:opacity .2s ease;
+  }
+  .btn:hover{opacity:.86;}
+  .btn-grad{
+    border-color:transparent;background:var(--g-accent);color:#fff;
+  }
+  .btn-ghost{
+    background:transparent;color:var(--ink);border-color:var(--line);
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .btn-ghost:hover{border-color:#C9C9C5;opacity:1;}
+
+  /* ---------- featured projects + playground (continuous dark band) ---------- */
+  .sec-dark{
+    background:#131418;
+    color:#EDEDEB;
+    border-top:none;
+  }
+  .sec-dark .sec-sub{color:#8E9198;}
+  .sec-dark .section-title{
+    background:linear-gradient(112deg,#FFFFFF 0%,#FFFFFF 20%,#CBD3FF 42%,#8DA0FF 58%,#B98BE0 80%,#F2839F 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+
+  /* shared "name only" project card — used by Featured Projects and Playground (full/half grid) */
+  .proj-grid{display:grid;gap:28px;}
+  .proj-grid.cols-1{grid-template-columns:repeat(2,1fr);max-width:977px;margin:0 auto;}
+  @media (max-width:700px){ .proj-grid.cols-1{grid-template-columns:1fr;} }
+  .proj-card{
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    background:#fff;border:1px solid rgba(255,255,255,.13);border-radius:14px;
+    padding:24px;text-align:center;
+    transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+  }
+  .proj-card.tall{grid-column:1 / -1;aspect-ratio:977/451;}
+  .proj-card.half{aspect-ratio:475/451;}
+  @media (max-width:700px){ .proj-card.half{grid-column:1 / -1;} }
+  .proj-card:hover{
+    transform:translateY(-4px);border-color:rgba(185,139,224,.55);
+    box-shadow:0 20px 44px -26px rgba(141,160,255,.6);
+  }
+  .proj-card.soon{cursor:default;}
+  .proj-card.soon:hover{transform:none;border-color:rgba(255,255,255,.13);box-shadow:none;}
+  .proj-card.soon:hover span{transform:none;}
+  .proj-card.soon:hover img,
+  .proj-card.soon:hover video{transform:none;}
+  .proj-card span{
+    font-family:'Newsreader',Georgia,serif;font-weight:400;text-transform:uppercase;
+    font-size:clamp(19px,2.4vw,28px);letter-spacing:-0.01em;color:#111214;
+    transition:transform .3s ease;
+  }
+  .proj-card:hover span{transform:scale(1.035);}
+  .proj-card:focus-visible{outline:2px solid #8DA0FF;outline-offset:3px;}
+
+  /* cover media (photo/video) — fills the card, no name/label on top */
+  .proj-card.has-cover{padding:0;}
+  .proj-card.has-cover img,
+  .proj-card.has-cover video{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s ease;
+  }
+  .proj-card.has-cover:hover img,
+  .proj-card.has-cover:hover video{transform:scale(1.03);}
+
+  /* cover card info overlay — fades/slides in per-card as it scrolls into view (uses the shared .rise observer) */
+  .proj-card.has-cover::before{
+    content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(0deg,rgba(6,6,8,.88) 0%,rgba(6,6,8,.6) 32%,rgba(6,6,8,.22) 56%,rgba(6,6,8,0) 80%);
+  }
+  .proj-card.info-dark{background:#131418;padding:0;}
+  .proj-info{
+    position:absolute;left:0;right:88px;bottom:0;z-index:2;max-width:560px;
+    padding:clamp(20px,3.4vw,42px);text-align:left;
+  }
+  .proj-info .proj-kicker{
+    display:block;font-family:'Inter',sans-serif;font-weight:600;
+    font-size:clamp(25px,3.4vw,40px);line-height:1.04;letter-spacing:-0.02em;
+    color:#fff;margin-bottom:11px;
+  }
+  .proj-info .proj-sub{
+    display:block;font-family:'Inter',sans-serif;font-weight:500;
+    font-size:clamp(13px,1.25vw,15.5px);letter-spacing:-0.005em;
+    color:rgba(255,255,255,.75);margin-bottom:10px;
+  }
+  .proj-info p{
+    font-family:'Inter',sans-serif;font-size:clamp(12.5px,1.05vw,13.5px);
+    line-height:1.5;color:rgba(255,255,255,.6);max-width:52ch;
+    transition:transform .3s ease;
+  }
+  .proj-card:hover .proj-info p{transform:scale(1.035);}
+  .proj-card .proj-arrow{
+    position:absolute;right:clamp(20px,3.4vw,42px);bottom:clamp(20px,3.4vw,42px);z-index:2;
+    width:40px;height:40px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    border:1px solid rgba(255,255,255,.4);
+    transition:background .3s ease,border-color .3s ease,transform .3s ease;
+  }
+  .proj-arrow.rise{transition:opacity .6s ease .15s,transform .3s ease,background .3s ease,border-color .3s ease;}
+  .proj-arrow.rise:not(.in){transition:opacity .6s ease .15s,transform .6s ease .15s;}
+  .proj-card:hover .proj-arrow{
+    background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.7);transform:scale(1.06);
+  }
+
+  /* half cards (Playground) — no arrow, narrower box: smaller kicker, reclaim the right-hand gap */
+  .proj-card.half .proj-info{right:0;max-width:82%;}
+  .proj-card.half .proj-kicker{font-size:clamp(17px,2.5vw,24px);margin-bottom:8px;}
+  .proj-card.half .proj-sub{font-size:clamp(12.5px,1.15vw,14px);margin-bottom:0;}
+
+  /* ---------- closing / contact ---------- */
+  .closing{
+    padding:var(--gap-section) 0;border-top:1px solid var(--line);
+  }
+  .closing-card{
+    max-width:1032px;margin:0 auto;
+    border:1px solid transparent;border-radius:14px;
+    padding:clamp(34px,5vw,64px);
+    background:
+      var(--g-wash) padding-box,
+      var(--g-accent) border-box;
+  }
+  .closing-title{
+    font-family:'Newsreader',Georgia,serif;font-weight:400;
+    font-size:clamp(26px,3vw,36px);letter-spacing:-0.02em;
+    margin-bottom:10px;
+    background:var(--g-hero-closing);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    padding-bottom:.05em;
+  }
+  .closing-lede{color:var(--ink-2);font-size:15.5px;margin-bottom:28px;max-width:56ch;}
+  .closing-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;}
+  .closing-actions .btn-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .scroll-top{
+    font-size:12.5px;font-weight:500;color:var(--ink);position:relative;padding:4px 0;
+  }
+  .scroll-top::after{
+    content:'';position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:var(--g-accent);transform:scaleX(0);transform-origin:right;
+    transition:transform .25s ease;
+  }
+  .scroll-top:hover::after{transform:scaleX(1);transform-origin:left;}
+
+  /* ---------- motion ---------- */
+  .rise{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease;}
+  .rise.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .rise{opacity:1;transform:none;transition:none;}
+    .proj-card:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap nav-inner">
+    <a href="#home" class="brand">Felipe Barclay <span>— Product &amp; Graphic Designer</span></a>
+    <nav>
+      <ul>
+        <li><a href="#resume" class="nav-link">Resume</a></li>
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li class="hide-sm"><a href="#playground" class="nav-link">Playground</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HOME ============ -->
+<section id="home">
+  <div class="hero-bg" aria-hidden="true"><img src="assets/hero-bg-figma.png" alt=""></div>
+  <div class="wrap">
+    <div class="hero-block">
+      <div class="hero-inner">
+        <h1>Felipe Barclay<br><span class="yr">Portfolio 2026</span></h1>
+        <p class="hero-line">Designing ideas into meaningful experiences.</p>
+        <p class="hero-sub">Digital &amp; Graphic Designer focused on creating intuitive websites, digital products and visual experiences through thoughtful, user-centered design.</p>
+      </div>
+      <div class="hero-portrait"><img src="assets/hero-portrait-figma.png" alt="Felipe Barclay"></div>
+      <div class="hero-divider"></div>
+    </div>
+
+    <div class="hero-skills">
+      <div class="hs-card rise">
+        <div class="hs-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.3"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <h3>Problem Solving &amp; Strategic Thinking</h3>
+        <p>Turning complex problems into clear, functional and user-centered solutions by balancing user needs, business goals and thoughtful design decisions.</p>
+      </div>
+      <div class="hs-card rise">
+        <div class="hs-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>Eye for Detail</h3>
+        <p>Crafting polished, consistent and intuitive experiences through careful attention to visual quality, usability and user-centered designs.</p>
+      </div>
+      <div class="hs-card rise">
+        <div class="hs-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Collaboration &amp; Communication</h3>
+        <p>Working closely with clients and multidisciplinary teams, valuing different perspectives to refine ideas and achieve the best possible outcome.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESUME ============ -->
+<section id="resume" class="sec">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div>
+        <h2 class="section-title">Resume and toolkit</h2>
+      </div>
+      <p>A short version of the CV. The full PDF is available to download.</p>
+    </div>
+
+    <div class="resume-grid rise">
+      <!-- left column -->
+      <div class="rise">
+        <div class="rblock">
+          <h3>Experience</h3>
+          <div class="rrow">
+            <div class="yr">2025 — 2026</div>
+            <div>
+              <h4>Graphic Designer</h4>
+              <div class="org">Cavalier Polo Experience</div>
+              <p>Collaborate with international clients to turn business needs into design solutions across web, marketing and branded products, managing multiple projects at once.</p>
+            </div>
+          </div>
+          <div class="rrow">
+            <div class="yr">2023 — 2025</div>
+            <div>
+              <h4>Freelance Designer</h4>
+              <div class="org">Independent</div>
+              <p>Worked independently with clients on websites, visual identities and digital marketing assets — end-to-end solutions balancing communication and execution.</p>
+            </div>
+          </div>
+          <div class="rrow">
+            <div class="yr">2022 — 2023</div>
+            <div>
+              <h4>Junior Designer</h4>
+              <div class="org">Melancia Marketing</div>
+              <p>Created social media content and marketing campaigns across Instagram, Facebook and email for multiple clients, with a focus on brand consistency and engagement.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rblock">
+          <h3>Education</h3>
+          <div class="rrow">
+            <div class="yr">2020 — 2025</div>
+            <div>
+              <h4>BA in Design &amp; Innovation</h4>
+              <div class="org">Universidad Torcuato Di Tella</div>
+              <p>Design &amp; Innovation program covering product design, digital experiences, visual communication and strategic problem solving through a multidisciplinary approach.</p>
+            </div>
+          </div>
+          <div class="rrow">
+            <div class="yr">2014 — 2020</div>
+            <div>
+              <h4>International Baccalaureate (IB)</h4>
+              <div class="org">St John's School</div>
+              <p>Bilingual education focused on developing strong communication, critical thinking and collaborative skills within an international learning environment.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rblock">
+          <h3>Skills</h3>
+          <div class="chips">
+            <span class="tag tag-grad">Product Design</span>
+            <span class="tag tag-grad">Graphic Design</span>
+            <span class="tag tag-grad">UX/UI Design</span>
+            <span class="tag tag-grad">Web Design</span>
+            <span class="tag tag-grad">Design Systems</span>
+            <span class="tag">Branding</span>
+            <span class="tag">Motion Design</span>
+            <span class="tag">User Flows</span>
+            <span class="tag">Information Architecture</span>
+            <span class="tag">Responsive Design</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- right column -->
+      <div class="rise">
+        <div class="rblock">
+          <h3>Design Tools</h3>
+          <div class="skill">
+            <div class="skill-top"><span>Figma</span><span>Advanced</span></div>
+            <div class="bar"><i style="width:100%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><span>Adobe Suite — Ai / Ps / Ae</span><span>Advanced</span></div>
+            <div class="bar"><i style="width:100%"></i></div>
+          </div>
+        </div>
+
+        <div class="rblock">
+          <h3>Project Management</h3>
+          <div class="skill">
+            <div class="skill-top"><span>Notion</span><span>Advanced</span></div>
+            <div class="bar"><i style="width:90%"></i></div>
+          </div>
+        </div>
+
+        <div class="rblock">
+          <h3>AI in my workflow</h3>
+          <div class="skill">
+            <div class="skill-top"><span>Claude</span><span>Advanced</span></div>
+            <div class="bar"><i style="width:100%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><span>ChatGPT</span><span>Proficient</span></div>
+            <div class="bar"><i style="width:80%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><span>v0</span><span>Proficient</span></div>
+            <div class="bar"><i style="width:80%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><span>Framer</span><span>Proficient</span></div>
+            <div class="bar"><i style="width:80%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><span>Cursor</span><span>Working knowledge</span></div>
+            <div class="bar"><i style="width:60%"></i></div>
+          </div>
+          <p class="small muted" style="margin-top:14px;">AI is used to accelerate research, exploration and prototyping, while design decisions, strategy and creative direction remain human-led.</p>
+        </div>
+
+        <div class="rblock">
+          <h3>Languages</h3>
+          <div class="skill">
+            <div class="skill-top"><span>Spanish</span><span>Native</span></div>
+            <div class="bar"><i style="width:100%"></i></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><span>English</span><span>Professional working proficiency</span></div>
+            <div class="bar"><i style="width:85%"></i></div>
+          </div>
+        </div>
+
+        <div class="resume-actions">
+          <a href="assets/felipe-barclay-cv.pdf" download="Felipe Barclay - CV.pdf" class="btn" id="downloadCv">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+            Download resume
+          </a>
+          <a href="https://www.linkedin.com/in/felipe-barclay-613b1a277" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+          <a href="https://www.behance.net/felipebarclay1" target="_blank" rel="noopener" class="btn btn-ghost">Behance</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FEATURED PROJECTS ============ -->
+<section id="work" class="sec sec-dark">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+    </div>
+    <p class="sec-sub rise">A B2B SaaS Platform, a Two Converting Websites and a Complete App.<br>Strong focus on Digital Products that solve real problems.</p>
+
+    <div class="proj-grid cols-1">
+      <a href="work/mediflow.html" class="proj-card tall has-cover rise" aria-label="MediFlow">
+        <video src="assets/covers/mediflow-cover.mp4" poster="assets/covers/mediflow-cover-poster.jpg" autoplay muted loop playsinline></video>
+        <div class="proj-info rise">
+          <span class="proj-kicker">B2B SaaS</span>
+          <span class="proj-sub">MediFlow — Clínica Bessone</span>
+          <p>Healthcare professionals shouldn't waste time navigating fragmented systems. MediFlow centralizes clinic operations into a single digital platform, helping teams reduce operational friction and gain real-time visibility across their daily workflows.</p>
+        </div>
+        <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="work/lake-poopo.html" class="proj-card tall has-cover rise" aria-label="Lake Poopó">
+        <video src="assets/covers/lake-poopo-cover.mp4" poster="assets/covers/lake-poopo-cover-poster.jpg" autoplay muted loop playsinline></video>
+        <div class="proj-info rise">
+          <span class="proj-kicker">Website</span>
+          <span class="proj-sub">Lake Poopó — QOTZUÑI</span>
+          <p>A dense research archive doesn't tell a story on its own — it just accumulates. Lake Poopó turns years of research into a five-chapter editorial site, giving readers a clear structure, interface and visual identity to follow the story from start to finish.</p>
+        </div>
+        <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="work/puzzles.html" class="proj-card tall has-cover rise" aria-label="Puzzles">
+        <img src="assets/covers/puzzles-cover.jpg" alt="Puzzles — brand identity cover" loading="lazy">
+        <div class="proj-info rise">
+          <span class="proj-kicker">Brand Identity &amp; Web</span>
+          <span class="proj-sub">Puzzles — Studio Identity</span>
+          <p>A digital product studio that builds SaaS for other businesses still needs to look the part itself. Puzzles is the brand identity and website built to prove it — a visual system and live site that carry the same product thinking the studio sells to its clients.</p>
+        </div>
+        <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="work/vinculapp.html" class="proj-card tall has-cover rise" aria-label="Vinculapp">
+        <video src="assets/covers/vinculapp-cover.mp4" poster="assets/covers/vinculapp-cover-poster.jpg" autoplay muted loop playsinline></video>
+        <div class="proj-info rise">
+          <span class="proj-kicker">Home Banking App</span>
+          <span class="proj-sub">Vinculapp — UX/UI Prototype</span>
+          <p>For many older adults, online banking can feel intimidating. VinculApp is designed to make everyday banking more accessible while allowing trusted family members to provide secure assistance from anywhere.</p>
+        </div>
+        <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLAYGROUND ============ -->
+<section id="playground" class="sec sec-dark">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div>
+        <h2 class="section-title">Playground</h2>
+      </div>
+    </div>
+    <p class="sec-sub rise">A selection of work across branding, motion, editorial, 3D and interface design — showcasing the range of my multidisciplinary approach.</p>
+
+    <div class="proj-grid cols-1">
+      <a href="work/ubicuo.html" class="proj-card half has-cover rise" aria-label="Ubicuo">
+        <img src="assets/covers/ubicuo-cover.jpg" alt="" loading="lazy">
+        <div class="proj-info rise">
+          <span class="proj-kicker">Branding</span>
+          <span class="proj-sub">Ubicuo</span>
+        </div>
+      </a>
+      <a href="work/matienzo.html" class="proj-card half has-cover rise" aria-label="Matienzo">
+        <img src="assets/covers/matienzo-cover.jpg" alt="" loading="lazy">
+        <div class="proj-info rise">
+          <span class="proj-kicker">Branding</span>
+          <span class="proj-sub">Matienzo</span>
+        </div>
+      </a>
+      <a href="work/realidades-fundidas.html" class="proj-card tall has-cover rise" aria-label="Realidades Fundidas">
+        <video src="assets/covers/realidades-fundidas-cover.mp4" poster="assets/covers/realidades-fundidas-cover-poster.jpg" autoplay muted loop playsinline></video>
+        <div class="proj-info rise">
+          <span class="proj-kicker">Immersive Design</span>
+          <span class="proj-sub">Realidades Fundidas</span>
+        </div>
+      </a>
+      <a href="work/cauce.html" class="proj-card tall has-cover rise" aria-label="Cauce">
+        <img src="assets/covers/cauce-cover.jpg" alt="Cauce — inflatable community shelter render" loading="lazy">
+        <div class="proj-info rise">
+          <span class="proj-kicker">Multidisciplinary Design</span>
+          <span class="proj-sub">Cauce</span>
+          <p>When floods strike, the challenge goes beyond evacuation. An interdisciplinary design project that transforms public spaces into temporary resilience hubs, providing shelter, essential services and community support during emergencies.</p>
+        </div>
+        <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="work/placas-tectonicas.html" class="proj-card tall has-cover rise" aria-label="Placas Tectónicas">
+        <video src="assets/covers/placas-tectonicas-cover.mp4" poster="assets/covers/placas-tectonicas-cover-poster.jpg" autoplay muted loop playsinline></video>
+        <div class="proj-info rise">
+          <span class="proj-kicker">Immersive Design</span>
+          <span class="proj-sub">Placas Tectónicas</span>
+        </div>
+      </a>
+      <a href="work/artroscopia.html" class="proj-card half has-cover rise" aria-label="Revista Latinoamericana de Artroscopia">
+        <img src="assets/covers/artro-cover.jpg" alt="" loading="lazy">
+        <div class="proj-info rise">
+          <span class="proj-kicker">Editorial Design</span>
+          <span class="proj-sub">Revista Latinoamericana de Artroscopia</span>
+        </div>
+      </a>
+      <a href="work/the-wall.html" class="proj-card half has-cover rise" aria-label="The Wall">
+        <img src="assets/covers/pink-floyd-cover.jpg" alt="" loading="lazy">
+        <div class="proj-info rise">
+          <span class="proj-kicker">Editorial Design</span>
+          <span class="proj-sub">The Wall</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="closing">
+      <div class="closing-card rise">
+        <h2 class="closing-title">Ready for a new challenge.</h2>
+        <p class="closing-lede">I'm actively looking for my next role — somewhere I can learn from a strong team and grow into a designer worth keeping around.</p>
+        <h2 class="closing-title">Contact</h2>
+        <div class="closing-actions">
+          <div class="btn-row">
+            <a href="mailto:fbarclay@mail.utdt.edu" class="btn btn-grad">Email me</a>
+            <a href="https://wa.me/5491140953333" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp</a>
+          </div>
+          <a href="#home" class="scroll-top">Scroll to top</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // header hairline on scroll + invert while over the dark band (Featured Projects + Playground)
+  const header = document.getElementById('siteHeader');
+  const darkSecs = document.querySelectorAll('.sec-dark');
+  const onScroll = () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+    if (darkSecs.length) {
+      const first = darkSecs[0].getBoundingClientRect();
+      const last = darkSecs[darkSecs.length - 1].getBoundingClientRect();
+      const h = header.offsetHeight;
+      header.classList.toggle('on-dark', first.top <= h * 0.5 && last.bottom >= h);
+    }
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+
+  // subtle reveal
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const rises = document.querySelectorAll('.rise');
+  if (reduce) {
+    rises.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0, rootMargin:'0px 0px -40px 0px'});
+    rises.forEach(el => io.observe(el));
+  }
+
+  // active nav state
+  const links = document.querySelectorAll('.nav-link');
+  const sections = [...links].map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector('.nav-link[href="#' + e.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(s => navIO.observe(s));
+
+  // remember scroll position continuously, and jump straight back to it (no anchor
+  // animation, no scrolling-from-top) whenever we return from a project page
+  (function(){
+    const KEY = 'fb_scrollY';
+    const saved = sessionStorage.getItem(KEY);
+    if (saved !== null) {
+      const htmlEl = document.documentElement;
+      const prevBehavior = htmlEl.style.scrollBehavior;
+      htmlEl.style.scrollBehavior = 'auto';
+      window.scrollTo(0, parseInt(saved, 10) || 0);
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+      requestAnimationFrame(() => { htmlEl.style.scrollBehavior = prevBehavior; });
+    }
+    window.addEventListener('scroll', () => {
+      sessionStorage.setItem(KEY, window.scrollY);
+    }, {passive:true});
+  })();
+</script>
+
+</body>
+</html>

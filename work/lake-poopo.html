@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lake Poopó — Case Study · Felipe Barclay</title>
+<meta name="description" content="Lake Poopó — turning a research archive into a five-chapter editorial website. UX/UI case study by Felipe Barclay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper:#FBFBFA; --paper-2:#F4F4F2;
+    --ink:#16171A; --ink-2:#3D3F44; --muted:#82858C; --line:#E4E4E1;
+    --g-hero:linear-gradient(112deg,#16171A 0%,#16171A 20%,#1F2A6E 42%,#2C3597 58%,#6B3BC9 80%,#C4416F 100%);
+    --g-hero-light:linear-gradient(112deg,#FFFFFF 0%,#FFFFFF 20%,#CBD3FF 42%,#8DA0FF 58%,#B98BE0 80%,#F2839F 100%);
+    --g-accent:linear-gradient(105deg,#2F4BD8 0%,#6B3BC9 52%,#D4426E 100%);
+    --g-accent-light:linear-gradient(105deg,#8DA0FF,#B98BE0 52%,#F2839F);
+    --g-wash:linear-gradient(140deg,#F2F3FB 0%,#F6F1FA 48%,#FBF1F4 100%);
+    --step--1:13px; --step-0:15.5px; --step-1:19px;
+    --step-2:clamp(22px, 2.1vw, 27px);
+    --step-3:clamp(28px, 3.2vw, 38px);
+    --step-4:clamp(36px, 5.6vw, 68px);
+    --gap-section:clamp(64px, 7vw, 104px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:80px;}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:var(--step-0);line-height:1.65;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--ink);color:var(--paper);}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 40px;}
+  .wrap-wide{max-width:1180px;margin:0 auto;padding:0 40px;}
+  @media (max-width:700px){ .wrap,.wrap-wide{padding:0 22px;} }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(19,20,24,.9);backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .back{display:inline-flex;align-items:center;gap:9px;font-size:14px;color:#B9BBC0;transition:color .2s;}
+  .back:hover{color:#fff;} .back svg{transition:transform .25s;} .back:hover svg{transform:translateX(-3px);}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .nav-right a{font-size:14px;color:#B9BBC0;transition:color .2s;}
+  .nav-right a:hover{color:#fff;}
+  .nav-cta{border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:7px 16px;transition:.2s;}
+  .nav-cta:hover{background:var(--g-accent);border-color:transparent;color:#fff !important;}
+  @media (max-width:620px){ .nav-right a.hide-sm{display:none;} }
+
+  /* ---------- hero ---------- */
+  .case-hero{background:#131418;color:#EDEDEB;padding:clamp(48px,6.5vw,80px) 0 clamp(44px,5vw,64px);}
+  .eyebrow span{
+    font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:500;
+    background:var(--g-accent-light);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+  .eyebrow{margin-bottom:18px;}
+  .case-hero h1{
+    font-family:'Newsreader',Georgia,serif;font-weight:400;
+    font-size:var(--step-4);line-height:1.05;letter-spacing:-0.026em;
+    max-width:20ch;margin-bottom:20px;
+    background:var(--g-hero-light);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;padding-bottom:.05em;
+  }
+  .case-hero .deck{max-width:54ch;font-size:var(--step-1);line-height:1.55;color:#B9BBC0;margin-bottom:30px;}
+  .facts{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;
+    padding:24px 0 0;border-top:1px solid rgba(255,255,255,.12);position:relative;
+  }
+  .facts::before{content:'';position:absolute;top:-1px;left:0;width:150px;height:1px;background:var(--g-accent-light);}
+  .facts dt{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#71747B;margin-bottom:6px;}
+  .facts dd{font-size:14.5px;color:#DCDDE0;}
+
+  .workflow{border-bottom:1px solid var(--line);background:var(--paper-2);}
+  .workflow-inner{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 0;}
+  .wf-label{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:500;flex-shrink:0;}
+  .wf-tools{display:flex;flex-wrap:wrap;gap:8px;}
+  .wf-chip{font-size:13px;color:var(--ink-2);border:1px solid var(--line);border-radius:100px;padding:6px 14px;background:#fff;}
+
+  /* ---------- sections ---------- */
+  section{scroll-margin-top:78px;}
+  .sec{padding:var(--gap-section) 0;border-top:1px solid var(--line);}
+  .sec-num{
+    font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:500;margin-bottom:14px;
+    background:var(--g-accent);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+  h2.sec-title{
+    font-family:'Newsreader',Georgia,serif;font-weight:400;
+    font-size:var(--step-3);line-height:1.1;letter-spacing:-0.02em;margin-bottom:24px;
+    background:var(--g-hero);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;padding-bottom:.05em;
+  }
+  .lede{max-width:62ch;color:var(--ink-2);font-size:15.5px;line-height:1.75;}
+  .lede + .lede{margin-top:14px;}
+  .lede strong{font-weight:500;color:var(--ink);}
+
+  /* context stats */
+  .cstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px;margin-top:36px;}
+  .cstat{border-top:1px solid var(--line);padding-top:16px;position:relative;}
+  .cstat::before{content:'';position:absolute;top:-1px;left:0;width:28px;height:1px;background:var(--g-accent);}
+  .cstat .n{
+    font-family:'Newsreader',Georgia,serif;font-size:clamp(26px,3vw,34px);line-height:1;letter-spacing:-0.02em;
+    background:var(--g-hero);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;margin-bottom:7px;padding-bottom:.04em;
+  }
+  .cstat p{font-size:13px;color:var(--ink-2);line-height:1.5;}
+
+  /* ---------- data → analysis → solution loop ---------- */
+  .loop{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;
+    border:1px solid transparent;border-radius:14px;overflow:hidden;
+    background:var(--g-wash) padding-box, var(--g-accent) border-box;
+  }
+  @media (max-width:820px){ .loop{grid-template-columns:1fr;} }
+  .loopstep{
+    padding:26px 26px;position:relative;border-right:1px solid rgba(107,59,201,.16);
+  }
+  .loopstep:last-child{border-right:none;}
+  @media (max-width:820px){
+    .loopstep{border-right:none;border-bottom:1px solid rgba(107,59,201,.16);}
+    .loopstep:last-child{border-bottom:none;}
+  }
+  .loopstep::after{
+    content:'';position:absolute;right:-6px;top:50%;transform:translateY(-50%) rotate(45deg);
+    width:10px;height:10px;border-top:1.5px solid #6B3BC9;border-right:1.5px solid #6B3BC9;
+    background:#F7F2FA;z-index:2;
+  }
+  .loopstep:last-child::after{display:none;}
+  @media (max-width:820px){
+    .loopstep::after{right:50%;top:auto;bottom:-6px;transform:translateX(50%) rotate(135deg);}
+  }
+  .loopstep .k{
+    font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:500;
+    color:#6B3BC9;margin-bottom:10px;
+  }
+  .loopstep h3{
+    font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:24px;
+    letter-spacing:-0.015em;margin-bottom:8px;
+  }
+  .loopstep p{font-size:13.5px;color:var(--ink-2);line-height:1.6;}
+  .loopstep.is-key{background:rgba(107,59,201,.055);}
+
+  /* ---------- interactive prototype embed ---------- */
+  .demo-bleed{
+    max-width:1500px;margin:0 auto;padding:0 40px;
+  }
+  @media (max-width:700px){ .demo-bleed{padding:0 22px;} }
+  .proto-embed{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#131418;
+    box-shadow:0 30px 60px -40px rgba(44,53,151,.35);}
+  .proto-embed iframe{display:block;width:100%;height:760px;border:0;}
+  @media (max-width:700px){ .proto-embed iframe{height:520px;} }
+  .demo-hint{
+    display:flex;align-items:center;gap:9px;justify-content:center;padding:0;margin-top:20px;
+    font-size:12.5px;color:var(--muted);
+  }
+  .demo-hint i{width:6px;height:6px;border-radius:50%;background:#2E9E5B;font-style:normal;flex-shrink:0;}
+
+  /* ---------- identity (visual) ---------- */
+  .ds{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:20px;}
+  @media (max-width:860px){ .ds{grid-template-columns:1fr;} }
+  .ps2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px;}
+  @media (max-width:820px){ .ps2{grid-template-columns:1fr;} }
+  .dscard{border:1px solid var(--line);border-radius:12px;padding:22px;background:#fff;}
+  .dscard h4{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:16px;}
+  .dscard p{font-size:13.5px;color:var(--ink-2);line-height:1.65;}
+  .palette{display:flex;gap:0;border-radius:8px;overflow:hidden;margin-bottom:12px;}
+  .palette span{flex:1;height:52px;}
+  .plabels{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);font-family:ui-monospace,Menlo,monospace;}
+  .specs{display:flex;flex-direction:column;gap:11px;}
+  .spec{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;}
+  .spec span:first-child{color:var(--muted);}
+  .spec span:last-child{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ink);}
+  .modlist{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .modlist li{font-size:13.5px;color:var(--ink-2);display:flex;gap:9px;line-height:1.55;}
+  .modlist li b{font-weight:500;color:var(--ink);}
+  .modlist li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--g-accent);margin-top:8px;flex-shrink:0;}
+
+  /* ---------- decisions ---------- */
+  .decisions{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media (max-width:860px){ .decisions{grid-template-columns:1fr;} }
+  .dcard{border:1px solid var(--line);border-radius:12px;padding:22px;background:#fff;}
+  .dcard h3{font-size:15px;font-weight:500;margin-bottom:9px;letter-spacing:-0.01em;}
+  .dcard p{font-size:13.5px;color:var(--ink-2);line-height:1.65;}
+
+  /* ---------- next / footer ---------- */
+  .next{border-top:1px solid var(--line);padding:var(--gap-section) 0;}
+  .next-card{
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    border:1px solid var(--line);border-radius:14px;padding:32px 34px;background:#fff;
+    transition:border-color .25s,transform .25s;
+  }
+  .next-card:hover{border-color:#D8D4E6;transform:translateY(-2px);}
+  .next-card .lbl{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .next-card h3{font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:var(--step-2);letter-spacing:-0.02em;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:500;
+    padding:12px 22px;border-radius:100px;border:1px solid transparent;
+    background:var(--g-accent);color:#fff;transition:opacity .2s;
+  }
+  .btn:hover{opacity:.88;}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:#C9C9C5;opacity:1;}
+  footer{
+    border-top:1px solid var(--line);padding:26px 0 40px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:12.5px;color:var(--muted);
+  }
+
+  .rise{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease;}
+  .rise.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .rise{opacity:1;transform:none;transition:none;}
+    .next-card:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap-wide nav-inner">
+    <a href="../index.html#work" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <div class="nav-right">
+      <a href="#product" class="hide-sm">The site</a>
+      <a href="../index.html#resume" class="hide-sm">Resume</a>
+      <a href="../index.html#contact" class="nav-cta">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="case-hero">
+  <div class="wrap-wide">
+    <div class="eyebrow"><span>Case study — Editorial website</span></div>
+    <h1>Lake Poopó</h1>
+    <p class="deck">A research archive with no shape, turned into a five-chapter site. My job was the structure, the interface and the visual identity.</p>
+
+  </div>
+</div>
+
+<div class="workflow">
+  <div class="wrap-wide workflow-inner">
+    <span class="wf-label">Workflow</span>
+    <div class="wf-tools">
+      <span class="wf-chip">Figma</span>
+      <span class="wf-chip">Claude</span>
+    </div>
+  </div>
+</div>
+
+<!-- THE PRODUCT -->
+<section id="product" class="sec" style="border-top:none;">
+  <div class="wrap-wide">
+    <div class="sec-num rise">The product</div>
+    <h2 class="sec-title rise">Five chapters, designed end to end</h2>
+    <p class="lede rise" style="margin-bottom:34px;">Click through Home, Lake Poopó, About the Urus, Impact and Resources as one connected site — the real interaction flow, not static screens.</p>
+  </div>
+
+  <div class="demo-bleed">
+    <div class="proto-embed rise">
+      <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FaCiwE9TJHRXEda88yqrqqk%2FWEBSITE-URUS%3Fnode-id%3D407-59%26viewport%3D-1258%252C10%252C0.07%26t%3DWrP3HYy8L2wi7HXr-1%26scaling%3Dscale-down-width%26content-scaling%3Dfixed%26starting-point-node-id%3D171%253A412%26page-id%3D14%253A3%26hide-ui%3D1" allowfullscreen loading="lazy" title="Lake Poopó — interactive site"></iframe>
+    </div>
+    <div class="demo-hint rise"><i></i> Click through it like the real site</div>
+  </div>
+</section>
+
+<!-- IDENTITY -->
+<section id="identity" class="sec">
+  <div class="wrap-wide">
+    <div class="sec-num rise">Identity</div>
+    <h2 class="sec-title rise">Make the interface feel like the place</h2>
+    <p class="lede rise" style="margin-bottom:32px;">Colour and type pulled from the place itself — tuned so a documentary about loss reads as serious, not somber.</p>
+
+    <div class="ps2 rise">
+      <div class="dscard">
+        <h4>Colour</h4>
+        <div class="palette">
+          <span style="background:#FFF3CC"></span>
+          <span style="background:#E4D9BE"></span>
+          <span style="background:#2F5D8C"></span>
+          <span style="background:#14233A"></span>
+          <span style="background:#C4551F"></span>
+        </div>
+        <div class="plabels"><span>Salt</span><span>Water</span><span>Alert</span></div>
+      </div>
+      <div class="dscard">
+        <h4>Type</h4>
+        <div class="specs">
+          <div class="spec"><span>Family</span><span>Montserrat</span></div>
+          <div class="spec"><span>Body</span><span>16 / 1.5</span></div>
+          <div class="spec"><span>Display</span><span>48 · 44 · 32</span></div>
+          <div class="spec"><span>Weights</span><span>4</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section id="context" class="sec">
+  <div class="wrap">
+    <div class="sec-num rise">Context</div>
+    <h2 class="sec-title rise">Why it exists, what it does</h2>
+    <div class="ps2 rise">
+      <div class="dscard">
+        <h4>Problem</h4>
+        <p>The filmmakers behind <strong>QOTZUÑI</strong> — an Academy Awards-qualifying documentary short — handed over years of research on the Uru communities of Bolivia as one master document: hydrology records, contamination studies, oral history, photography. No hierarchy, no entry point, no decision about what a stranger should understand first.</p>
+      </div>
+      <div class="dscard">
+        <h4>Solution</h4>
+        <p>A reading order, not just a layout — place, then evidence, then consequence, so the argument is earned rather than announced. Data sits directly over its own photographic source, and glass panels keep the landscape visible underneath the text.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT -->
+<div class="next">
+  <div class="wrap">
+    <a href="puzzles.html" class="next-card rise">
+      <div>
+        <div class="lbl">Next project</div>
+        <h3>Puzzles</h3>
+      </div>
+      <span class="btn btn-ghost">View case study
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+    <div style="margin-top:44px;display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="mailto:fbarclay@mail.utdt.edu" class="btn">Get in touch</a>
+      <a href="../index.html#work" class="btn btn-ghost">All work</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Felipe Barclay</span>
+    <span>Lake Poopó — design team project</span>
+  </footer>
+</div>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const rises = document.querySelectorAll('.rise');
+  if (reduce) { rises.forEach(el => el.classList.add('in')); }
+  else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0, rootMargin:'0px 0px -40px 0px'});
+    rises.forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>
