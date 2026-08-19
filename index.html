@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>history.scrollRestoration = 'manual';</script>
-<title>Felipe Barclay — Product Designer</title>
-<meta name="description" content="Felipe Barclay — Product Designer working across UX/UI, web and B2B software. Based in Buenos Aires, open to remote roles.">
+<title>Felipe Barclay — Digital Designer</title>
+<meta name="description" content="Felipe Barclay — Digital Designer working across web, branding and product design. Based in Buenos Aires, open to remote roles.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
@@ -83,7 +83,7 @@
     transition:border-color .3s ease;
   }
   header.scrolled{border-bottom-color:var(--line);}
-  /* header inverts while the dark Featured Projects / Playground band is in view */
+  /* header inverts while the dark Work band is in view */
   header.on-dark{background:rgba(19,20,24,.85);border-bottom-color:rgba(255,255,255,.1);}
   header.on-dark .brand{color:#F5F5F3;}
   header.on-dark .brand span{color:#8E9198;}
@@ -193,18 +193,15 @@
   /* ---------- generic section ---------- */
   section{scroll-margin-top:80px;}
   .sec{padding:var(--gap-section) 0;border-top:1px solid var(--line);}
-  /* Playground follows straight on from Featured Projects — tighter gap, no extra hairline, same dark band */
-  #playground{padding-top:clamp(52px,6vw,80px);border-top:none;}
   .sec-head{
     display:flex;align-items:flex-end;justify-content:space-between;
     gap:24px;flex-wrap:wrap;margin-bottom:56px;
   }
   .sec-head > p{max-width:46ch;color:var(--muted);font-size:14.5px;}
 
-  /* Featured Projects / Playground: intro paragraph sits below the title, not beside it */
-  #work .sec-head,#playground .sec-head{margin-bottom:14px;}
+  /* Work: intro paragraph sits below the title, not beside it */
+  #work .sec-head{margin-bottom:14px;}
   .sec-sub{max-width:46ch;color:var(--muted);font-size:14.5px;margin-bottom:56px;}
-  #playground .sec-sub{max-width:500px;}
   #work .sec-sub{max-width:640px;}
 
   /* ---------- resume ---------- */
@@ -228,6 +225,8 @@
   .rrow .yr{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px;}
   .rrow h4{font-size:15px;font-weight:500;letter-spacing:-0.01em;margin-bottom:2px;}
   .rrow .org{font-size:13.5px;color:var(--muted);margin-bottom:7px;}
+  .rrow .org a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px;transition:color .2s,text-decoration-color .2s;}
+  .rrow .org a:hover{color:var(--ink);text-decoration-color:var(--ink);}
   .rrow p{font-size:13.5px;color:var(--ink-2);line-height:1.65;}
 
   .skill{padding:11px 0;border-bottom:1px solid var(--line);}
@@ -268,7 +267,7 @@
   }
   .btn-ghost:hover{border-color:#C9C9C5;opacity:1;}
 
-  /* ---------- featured projects + playground (continuous dark band) ---------- */
+  /* ---------- work (dark band) ---------- */
   .sec-dark{
     background:#131418;
     color:#EDEDEB;
@@ -281,7 +280,7 @@
     -webkit-text-fill-color:transparent;color:transparent;
   }
 
-  /* shared "name only" project card — used by Featured Projects and Playground (full/half grid) */
+  /* shared "name only" project card — used across the work grid (full/half grid) */
   .proj-grid{display:grid;gap:28px;}
   .proj-grid.cols-1{grid-template-columns:repeat(2,1fr);max-width:977px;margin:0 auto;}
   @media (max-width:700px){ .proj-grid.cols-1{grid-template-columns:1fr;} }
@@ -361,7 +360,7 @@
     background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.7);transform:scale(1.06);
   }
 
-  /* half cards (Playground) — no arrow, narrower box: smaller kicker, reclaim the right-hand gap */
+  /* half cards — no arrow, narrower box: smaller kicker, reclaim the right-hand gap */
   .proj-card.half .proj-info{right:0;max-width:82%;}
   .proj-card.half .proj-kicker{font-size:clamp(17px,2.5vw,24px);margin-bottom:8px;}
   .proj-card.half .proj-sub{font-size:clamp(12.5px,1.15vw,14px);margin-bottom:0;}
@@ -414,12 +413,11 @@
 
 <header id="siteHeader">
   <div class="wrap nav-inner">
-    <a href="#home" class="brand">Felipe Barclay <span>— Product &amp; Graphic Designer</span></a>
+    <a href="#home" class="brand">Felipe Barclay <span>— Digital Designer</span></a>
     <nav>
       <ul>
         <li><a href="#resume" class="nav-link">Resume</a></li>
         <li><a href="#work" class="nav-link">Work</a></li>
-        <li class="hide-sm"><a href="#playground" class="nav-link">Playground</a></li>
         <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
@@ -434,7 +432,7 @@
       <div class="hero-inner">
         <h1>Felipe Barclay<br><span class="yr">Portfolio 2026</span></h1>
         <p class="hero-line">Designing ideas into meaningful experiences.</p>
-        <p class="hero-sub">Digital &amp; Graphic Designer focused on creating intuitive websites, digital products and visual experiences through thoughtful, user-centered design.</p>
+        <p class="hero-sub">Digital Designer focused on creating intuitive websites, digital products and visual experiences through thoughtful, user-centered design.</p>
       </div>
       <div class="hero-portrait"><img src="assets/hero-portrait-figma.png" alt="Felipe Barclay"></div>
       <div class="hero-divider"></div>
@@ -485,24 +483,24 @@
             <div class="yr">2025 — 2026</div>
             <div>
               <h4>Graphic Designer</h4>
-              <div class="org">Cavalier Polo Experience</div>
-              <p>Collaborate with international clients to turn business needs into design solutions across web, marketing and branded products, managing multiple projects at once.</p>
+              <div class="org"><a href="work/cavalier-polo.html">Cavalier Polo</a></div>
+              <p>Designed logos, brand systems and custom team apparel for 190+ international clients across high-profile tournaments, contributing to over $120,000 USD in sales.</p>
             </div>
           </div>
           <div class="rrow">
-            <div class="yr">2023 — 2025</div>
+            <div class="yr">2023 — 2026</div>
             <div>
               <h4>Freelance Designer</h4>
               <div class="org">Independent</div>
-              <p>Worked independently with clients on websites, visual identities and digital marketing assets — end-to-end solutions balancing communication and execution.</p>
+              <p>Independently designed and shipped 3 end-to-end projects — a client website, plus a self-directed brand identity &amp; website and a B2B SaaS concept — covering everything from research to final UI.</p>
             </div>
           </div>
           <div class="rrow">
             <div class="yr">2022 — 2023</div>
             <div>
-              <h4>Junior Designer</h4>
+              <h4>Jr. Designer</h4>
               <div class="org">Melancia Marketing</div>
-              <p>Created social media content and marketing campaigns across Instagram, Facebook and email for multiple clients, with a focus on brand consistency and engagement.</p>
+              <p>Managed content and paid campaigns across 7+ Instagram accounts, publishing 5–10 posts and stories per day and growing engagement, followers and reach for multiple clients.</p>
             </div>
           </div>
         </div>
@@ -604,7 +602,7 @@
         </div>
 
         <div class="resume-actions">
-          <a href="assets/felipe-barclay-cv.pdf" download="Felipe Barclay - CV.pdf" class="btn" id="downloadCv">
+          <a href="assets/felipe-barclay-cv-digital-designer.pdf" download="Felipe Barclay - CV.pdf" class="btn" id="downloadCv">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
             Download resume
           </a>
@@ -617,26 +615,17 @@
   </div>
 </section>
 
-<!-- ============ FEATURED PROJECTS ============ -->
+<!-- ============ WORK ============ -->
 <section id="work" class="sec sec-dark">
   <div class="wrap">
     <div class="sec-head rise">
       <div>
-        <h2 class="section-title">Featured Projects</h2>
+        <h2 class="section-title">Work</h2>
       </div>
     </div>
-    <p class="sec-sub rise">A B2B SaaS Platform, a Two Converting Websites and a Complete App.<br>Strong focus on Digital Products that solve real problems.</p>
+    <p class="sec-sub rise">A selection of projects across web, product, branding and editorial design.</p>
 
     <div class="proj-grid cols-1">
-      <a href="work/mediflow.html" class="proj-card tall has-cover rise" aria-label="MediFlow">
-        <video src="assets/covers/mediflow-cover.mp4" poster="assets/covers/mediflow-cover-poster.jpg" autoplay muted loop playsinline></video>
-        <div class="proj-info rise">
-          <span class="proj-kicker">B2B SaaS</span>
-          <span class="proj-sub">MediFlow — Clínica Bessone</span>
-          <p>Healthcare professionals shouldn't waste time navigating fragmented systems. MediFlow centralizes clinic operations into a single digital platform, helping teams reduce operational friction and gain real-time visibility across their daily workflows.</p>
-        </div>
-        <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
       <a href="work/lake-poopo.html" class="proj-card tall has-cover rise" aria-label="Lake Poopó">
         <video src="assets/covers/lake-poopo-cover.mp4" poster="assets/covers/lake-poopo-cover-poster.jpg" autoplay muted loop playsinline></video>
         <div class="proj-info rise">
@@ -649,36 +638,39 @@
       <a href="work/puzzles.html" class="proj-card tall has-cover rise" aria-label="Puzzles">
         <img src="assets/covers/puzzles-cover.jpg" alt="Puzzles — brand identity cover" loading="lazy">
         <div class="proj-info rise">
-          <span class="proj-kicker">Brand Identity &amp; Web</span>
+          <span class="proj-kicker">Website &amp; Brand Identity</span>
           <span class="proj-sub">Puzzles — Studio Identity</span>
           <p>A digital product studio that builds SaaS for other businesses still needs to look the part itself. Puzzles is the brand identity and website built to prove it — a visual system and live site that carry the same product thinking the studio sells to its clients.</p>
+        </div>
+        <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="work/mediflow.html" class="proj-card tall has-cover rise" aria-label="MediFlow">
+        <video src="assets/covers/mediflow-cover.mp4" poster="assets/covers/mediflow-cover-poster.jpg" autoplay muted loop playsinline></video>
+        <div class="proj-info rise">
+          <span class="proj-kicker">Product Design</span>
+          <span class="proj-sub">MediFlow</span>
+          <p>Healthcare professionals shouldn't waste time navigating fragmented systems. MediFlow is a self-directed concept for a B2B platform that centralizes clinic operations into a single digital tool, built to explore how teams could reduce operational friction and gain real-time visibility across their daily workflows.</p>
         </div>
         <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
       <a href="work/vinculapp.html" class="proj-card tall has-cover rise" aria-label="Vinculapp">
         <video src="assets/covers/vinculapp-cover.mp4" poster="assets/covers/vinculapp-cover-poster.jpg" autoplay muted loop playsinline></video>
         <div class="proj-info rise">
-          <span class="proj-kicker">Home Banking App</span>
+          <span class="proj-kicker">Product Design</span>
           <span class="proj-sub">Vinculapp — UX/UI Prototype</span>
-          <p>For many older adults, online banking can feel intimidating. VinculApp is designed to make everyday banking more accessible while allowing trusted family members to provide secure assistance from anywhere.</p>
+          <p>For many older adults, online banking can feel intimidating. VinculApp is a UX/UI prototype designed to make everyday banking more accessible while allowing trusted family members to provide secure assistance from anywhere.</p>
         </div>
         <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PLAYGROUND ============ -->
-<section id="playground" class="sec sec-dark">
-  <div class="wrap">
-    <div class="sec-head rise">
-      <div>
-        <h2 class="section-title">Playground</h2>
-      </div>
-    </div>
-    <p class="sec-sub rise">A selection of work across branding, motion, editorial, 3D and interface design — showcasing the range of my multidisciplinary approach.</p>
-
-    <div class="proj-grid cols-1">
+      <a href="work/cavalier-polo.html" class="proj-card tall has-cover rise" aria-label="Cavalier Polo">
+        <img src="assets/covers/cavalier-polo-cover.jpg" alt="Cavalier Polo — brand and merchandise design" loading="lazy">
+        <div class="proj-info rise">
+          <span class="proj-kicker">Graphic Design</span>
+          <span class="proj-sub">Cavalier Polo</span>
+          <p>In-house client work: logos, brand systems and custom team apparel for 190+ international clients across high-profile polo tournaments, designed and delivered under tight deadlines and peak-season demand.</p>
+        </div>
+        <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
       <a href="work/ubicuo.html" class="proj-card half has-cover rise" aria-label="Ubicuo">
         <img src="assets/covers/ubicuo-cover.jpg" alt="" loading="lazy">
         <div class="proj-info rise">
@@ -700,6 +692,13 @@
           <span class="proj-sub">Realidades Fundidas</span>
         </div>
       </a>
+      <a href="work/placas-tectonicas.html" class="proj-card tall has-cover rise" aria-label="Placas Tectónicas">
+        <video src="assets/covers/placas-tectonicas-cover.mp4" poster="assets/covers/placas-tectonicas-cover-poster.jpg" autoplay muted loop playsinline></video>
+        <div class="proj-info rise">
+          <span class="proj-kicker">Immersive Design</span>
+          <span class="proj-sub">Placas Tectónicas</span>
+        </div>
+      </a>
       <a href="work/cauce.html" class="proj-card tall has-cover rise" aria-label="Cauce">
         <img src="assets/covers/cauce-cover.jpg" alt="Cauce — inflatable community shelter render" loading="lazy">
         <div class="proj-info rise">
@@ -708,13 +707,6 @@
           <p>When floods strike, the challenge goes beyond evacuation. An interdisciplinary design project that transforms public spaces into temporary resilience hubs, providing shelter, essential services and community support during emergencies.</p>
         </div>
         <span class="proj-arrow rise"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a href="work/placas-tectonicas.html" class="proj-card tall has-cover rise" aria-label="Placas Tectónicas">
-        <video src="assets/covers/placas-tectonicas-cover.mp4" poster="assets/covers/placas-tectonicas-cover-poster.jpg" autoplay muted loop playsinline></video>
-        <div class="proj-info rise">
-          <span class="proj-kicker">Immersive Design</span>
-          <span class="proj-sub">Placas Tectónicas</span>
-        </div>
       </a>
       <a href="work/artroscopia.html" class="proj-card half has-cover rise" aria-label="Revista Latinoamericana de Artroscopia">
         <img src="assets/covers/artro-cover.jpg" alt="" loading="lazy">
@@ -755,7 +747,7 @@
 </section>
 
 <script>
-  // header hairline on scroll + invert while over the dark band (Featured Projects + Playground)
+  // header hairline on scroll + invert while over the dark band (Work)
   const header = document.getElementById('siteHeader');
   const darkSecs = document.querySelectorAll('.sec-dark');
   const onScroll = () => {
